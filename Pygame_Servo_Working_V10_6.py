@@ -78,9 +78,9 @@ def get_color_for_distance(d): # Function Determine the color of the points in t
         else:
             return GREEN  # Anything beyond 2m
     elif idx == 6 or idx ==7  or idx ==8:
-        if d < 80:         ##### Test bench values
+        if d < 100:         ##### Test bench values
             return RED
-        elif d > 200:      ####### Code to detect a Hole or Gap in front
+        elif d > 210:      ####### Code to detect a Hole or Gap in front
             return GREY
         else:
             return GREEN
@@ -256,8 +256,8 @@ while running:
                 left_prior_z6 =0
                 
         elif label == "7th":  # These are the zones to detect the floor in front, Test Bench values, they need to be replaced for a stand up position 
-            count_1 = sum(1 for v in dist if v < 80) # Here we know that everything would be below 200mm, reason why we are only detecting distances < 100mm
-            count_2 = sum(1 for v in dist if v > 400) # Anything above a Trheshold, will be consider a GAP in front of the person Original = 200, 400 only for testing
+            count_1 = sum(1 for v in dist if v < 100) # Here we know that everything would be below 200mm, reason why we are only detecting distances < 100mm
+            count_2 = sum(1 for v in dist if v > 210) # Anything above a Trheshold, will be consider a GAP in front of the person Original = 200, 400 only for testing
             if count_1 >= 3:                          # Theres no warning for these zones 7th, 8th, 9th
                 zone_colors["7th"] = RED
                 left_prior_z7 =3
@@ -270,8 +270,8 @@ while running:
                 left_prior_z7 =0
         
         elif label == "8th":   
-            count_1 = sum(1 for v in dist if v < 80) 
-            count_2 = sum(1 for v in dist if v > 400) 
+            count_1 = sum(1 for v in dist if v < 100) 
+            count_2 = sum(1 for v in dist if v > 210) 
             if count_1 >= 3:                          
                 zone_colors["8th"] = RED
                 center_prior_z8 =3
@@ -283,8 +283,8 @@ while running:
                 center_prior_z8 =0
                 
         elif label == "9th":   
-            count_1 = sum(1 for v in dist if v < 80) 
-            count_2 = sum(1 for v in dist if v > 400) 
+            count_1 = sum(1 for v in dist if v < 100) 
+            count_2 = sum(1 for v in dist if v > 210) 
             if count_1 >= 3:                          
                 zone_colors["9th"] = RED
                 right_prior_z9 =3
